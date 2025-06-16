@@ -80,7 +80,7 @@ export const columns: ColumnDef<Activity>[] = [
   {
     accessorKey: "status",
     header: "Estado",
-    cell: ({ row }) => {
+    cell: function StatusCell({ row }) {
       const status = row.getValue("status")
       const icon =
         status === "success" ? (
@@ -102,24 +102,23 @@ export const columns: ColumnDef<Activity>[] = [
   {
     accessorKey: "timestamp",
     header: "Fecha y Hora",
-    cell: ({ row }) => new Date(row.getValue("timestamp")).toLocaleString(),
+    cell: function TimestampCell({ row }) {
+      return new Date(row.getValue("timestamp")).toLocaleString()
+    },
   },
   {
     accessorKey: "tipo_documento",
     header: "Tipo de Documento",
-    // También puedes aplicar el helper aquí si este campo puede estar vacío
     cell: renderCellWithPlaceholder("Sin tipo"),
   },
   {
     accessorKey: "nombre_paciente",
     header: "Paciente",
-    // Usamos el helper para mostrar un placeholder si el nombre no está
     cell: renderCellWithPlaceholder("No especificado"),
   },
   {
     accessorKey: "nombre_medico",
     header: "Médico",
-    // Usamos el helper con el placeholder por defecto ("No disponible")
     cell: renderCellWithPlaceholder(),
   },
 ]
