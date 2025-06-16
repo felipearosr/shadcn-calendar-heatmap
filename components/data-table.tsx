@@ -61,9 +61,8 @@ const columnIdToName: Record<string, string> = {
 }
 
 // Helper para renderizar una celda con un placeholder para valores vacíos
-const renderCellWithPlaceholder =
-  (placeholder: string = "No disponible") =>
-  ({ getValue }: { getValue: () => any }) => {
+const renderCellWithPlaceholder = (placeholder: string = "No disponible") => {
+  const Cell = ({ getValue }: { getValue: () => any }) => {
     const value = getValue()
     // Si el valor es "falsy" (null, undefined, ""), muestra el placeholder
     return value ? (
@@ -72,10 +71,10 @@ const renderCellWithPlaceholder =
       <span className="text-muted-foreground italic">{placeholder}</span>
     )
   }
-
-// Add display name to the component
-renderCellWithPlaceholder.displayName = "RenderCellWithPlaceholder"
-
+  Cell.displayName = "RenderCellWithPlaceholder"
+  return Cell
+}
+  
 export const columns: ColumnDef<Activity>[] = [
   {
     accessorKey: "status",
