@@ -73,6 +73,9 @@ const renderCellWithPlaceholder =
     )
   }
 
+// Add display name to the component
+renderCellWithPlaceholder.displayName = "RenderCellWithPlaceholder"
+
 export const columns: ColumnDef<Activity>[] = [
   {
     accessorKey: "status",
